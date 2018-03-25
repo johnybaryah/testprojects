@@ -43,6 +43,13 @@
         }
     });
 
+    app.directive('productTitle', function(){
+        return {
+            restrict: 'E', // E = element
+            templateUrl: 'product-info.html'
+        };
+    });
+
     var gems = [
         {
             name: 'Citrine',

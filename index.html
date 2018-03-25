@@ -24,12 +24,13 @@
                 <div ng-repeat="product in store.Products">
                     <li ng-hide="product.outOfStock" class="list-group-item justify-content-between">
                         <div class="productInfo text-center">
-                            {{ product.name }}
-                            <em>{{ product.price | currency }}</em> <!-- pipe currency will properly format the amount -->
+                            <product-title></product-title>
+
                             
                             <!-- below code doesn't work as ng-include only works with 
                                 server accessing the files but not direct access-->
-                            <h3 ng-include="'product-info.html'"></h3> 
+                            <!--<h3 ng-include="'product-info.html'"></h3> -->
+                            
                             <div ng-show="product.images.length" class="imgGallary" ng-controller="GalleryController as gallery">
                                 <img ng-src="{{product.images[gallery.current]}}" class="img-thumbnail img-fluid" style="width: 200px; height:200px;"/>
                             </div>
