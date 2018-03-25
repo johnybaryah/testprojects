@@ -4,7 +4,7 @@
     var app = angular.module('store', ['store-directives']);
 
     // controller - this is where you'd define all the functions and values and app behavior
-    app.controller('StoreController', [$http, function($http){
+    app.controller('StoreController', ['$http', function($http){
         // power of JS! declare properties on the fly
         var store = this;
         store.products = [];
