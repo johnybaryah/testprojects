@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html ng-app="store"> 
+    <!-- 
+        store is defined in app.js as a module/app. ng-app is a DIRECTIVE 
+        Just by including ng-app - its going to treat HTML as part of angular app - hence you can write expressions like {{4 + 6}}
+    -->
+    <head>
+        <link rel="stylesheet" type="text/css" href="bootstrap-4.0.0-dist/css/bootstrap.min.css"/>
+        <style>
+            .ng-invalid.ng-dirty{
+                border-color: red;
+            }
+
+            .ng-valid.ng-dirty{
+                border-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>{{"Hello!"}}</h1>
+        <div ng-controller="StoreController as store">
+            <ul class="list-group">
+                <div ng-repeat="product in store.Products">
+                    <li ng-hide="product.outOfStock" class="list-group-item justify-content-between">
+                        <div class="productInfo text-center">
+                            {{ product.name }}
+                            <em>{{ product.price | currency }}</em> <!-- pipe currency will properly format the amount -->
+                            
+                            <!-- below code doesn't work as ng-include only works with 
+                                server accessing the files but not direct access-->
+                            <h3 ng-include="'product-info.html'"></h3> 
+                            <div ng-show="product.images.length" class="imgGallary" ng-controller="GalleryController as gallery">
+                                <img ng-src="{{product.images[gallery.current]}}" class="img-thumbnail img-fluid" style="width: 200px; height:200px;"/>
+                            </div>
+                            <br/>
+                            <input class="btn btn-success" type="button" id="btnAddToCart" ng-show="product.canPurchase" value="Add to cart"/>
+                        </div>
+                        
+                        <!-- ng-init is better to define it in a controller as thats where logic should live - not in html -->
+                        <!--<section ng-init="tab = 1">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link" ng-class="{active:tab === 1}" href ng-click="tab = 1">Description</a></li>
+                                <li class="nav-item"><a class="nav-link" ng-class="{active:tab === 2}" href ng-click="tab = 2">Specs</a></li>
+                                <li class="nav-item"><a class="nav-link" href ng-class="{active:tab === 3}" ng-click="tab = 3">Ratings</a></li>
+                            </ul>
+                            <div class="panel" ng-show="tab === 1">
+                                <h4>Description</h4>
+                                <blockquote class="blockquote">
+                                    {{product.description}}
+                                </blockquote>
+                            </div>
+                            <div class="panel" ng-show="tab === 2">
+                                <h4>Specifications</h4>
+                                <blockquote class="blockquote">
+                                    {{}}
+                                </blockquote>
+                            </div>
+                            <div class="panel" ng-show="tab === 3">
+                                <h4>Ratings</h4>
+                                <blockquote class="blockquote">
+                                    {{"None yet"}}
+                                </blockquote>
+                            </div>
+                        </section>-->
+
+                        <!-- using controller directive -->
+                        <section ng-controller="PanelController as panel">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link" ng-class="{active: panel.isSelected(1)}" href ng-click="panel.selectTab(1)">Description</a></li>
+                                <li class="nav-item"><a class="nav-link" ng-class="{active: panel.isSelected(2)}" href ng-click="panel.selectTab(2)">Specs</a></li>
+                                <li class="nav-item"><a class="nav-link" href ng-class="{active: panel.isSelected(3)}" ng-click="panel.selectTab(3)">Ratings</a></li>
+                            </ul>
+                            <div class="panel" ng-show="panel.isSelected(1)">
+                                <h4>Description</h4>
+                                <blockquote class="blockquote">
+                                    {{product.description}}
+                                </blockquote>
+                            </div>
+                            <div class="panel" ng-show="panel.isSelected(2)">
+                                <h4>Specifications</h4>
+                                <blockquote class="blockquote">
+                                    {{}}
+                                </blockquote>
+                            </div>
+                            <div class="panel" ng-show="panel.isSelected(3)">
+                                <h4>Ratings</h4>
+                                <blockquote class="blockquote" ng-repeat="review in product.reviews">
+                                    <b>Stars: {{ review.stars }}</b>
+                                    {{review.body}}
+                                    <cite>by: {{review.author }}</cite>
+                                </blockquote>
+                                <form name="submitReview" ng-controller="ReviewController as reviewCtrl" 
+                                ng-submit="submitReview.$valid && reviewCtrl.addReview(product)" novalidate>
+                                    <blockquote class="blockquote">
+                                        <b>Stars: {{ reviewCtrl.review.stars }}</b>
+                                        {{reviewCtrl.review.body}}
+                                        <cite>by: {{reviewCtrl.review.author }}</cite>
+                                    </blockquote>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <select class="form-control" required ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+                                                <option value="">Rate the Product</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea ng-model="reviewCtrl.review.body" class="form-control" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>by: </label>
+                                            <input ng-model="reviewCtrl.review.author" type="email" class="form-control" required/>
+                                        </div>
+                                        {{submitReview.$valid}}
+                                        <input type="submit" value="Submit" class="btn btn-primary" />                                        
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </section>
+                    </li>
+                </div>
+            </ul>
+            
+            
+        </div>
+
+        <script src="angular.min.js"></script>
+        <script src="app.js"></script>
+
+        
+    </body>
+</html>
