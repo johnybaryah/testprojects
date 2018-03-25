@@ -81,7 +81,7 @@
                 }
             },
             controllerAs: 'panel'
-        }
+        };
     });
 
     var gems = [
