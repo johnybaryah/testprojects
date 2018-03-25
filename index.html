@@ -6,7 +6,7 @@
         Just by including ng-app - its going to treat HTML as part of angular app - hence you can write expressions like {{4 + 6}}
     -->
     <head>
-        <link rel="stylesheet" type="text/css" href="bootstrap-4.0.0-dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
         <style>
             .ng-invalid.ng-dirty{
                 border-color: red;
@@ -36,33 +36,6 @@
                             <br/>
                             <input class="btn btn-success" type="button" id="btnAddToCart" ng-show="product.canPurchase" value="Add to cart"/>
                         </div>
-                        
-                        <!-- ng-init is better to define it in a controller as thats where logic should live - not in html -->
-                        <!--<section ng-init="tab = 1">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link" ng-class="{active:tab === 1}" href ng-click="tab = 1">Description</a></li>
-                                <li class="nav-item"><a class="nav-link" ng-class="{active:tab === 2}" href ng-click="tab = 2">Specs</a></li>
-                                <li class="nav-item"><a class="nav-link" href ng-class="{active:tab === 3}" ng-click="tab = 3">Ratings</a></li>
-                            </ul>
-                            <div class="panel" ng-show="tab === 1">
-                                <h4>Description</h4>
-                                <blockquote class="blockquote">
-                                    {{product.description}}
-                                </blockquote>
-                            </div>
-                            <div class="panel" ng-show="tab === 2">
-                                <h4>Specifications</h4>
-                                <blockquote class="blockquote">
-                                    {{}}
-                                </blockquote>
-                            </div>
-                            <div class="panel" ng-show="tab === 3">
-                                <h4>Ratings</h4>
-                                <blockquote class="blockquote">
-                                    {{"None yet"}}
-                                </blockquote>
-                            </div>
-                        </section>-->
 
                         <!-- using controller directive -->
                         <section ng-controller="PanelController as panel">
