@@ -65,6 +65,25 @@
         return { restrict: 'A', templateUrl: 'product-specs.html'};
     });
 
+    app.directive('productPanel', function(){
+        return {
+            restrict: 'E',
+            templateUrl : 'product-panel.html',
+            controller: function(){
+                this.tab = 1;
+                
+                this.selectTab = function(val){
+                    this.tab = val;
+                }
+        
+                this.isSelected = function(tab){
+                    return this.tab === tab;
+                }
+            },
+            controllerAs: 'panel'
+        }
+    });
+
     var gems = [
         {
             name: 'Citrine',
