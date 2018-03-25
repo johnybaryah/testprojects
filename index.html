@@ -27,15 +27,9 @@
                             <!-- below is the custom directive -->
                             <product-title></product-title>
 
-                            
-                            <!-- below code doesn't work as ng-include only works with 
-                                server accessing the files but not direct access-->
-                            <!--<h3 ng-include="'product-info.html'"></h3> -->
-
-                            <div ng-show="product.images.length" class="imgGallary" ng-controller="GalleryController as gallery">
-                                <img ng-src="{{product.images[gallery.current]}}" class="img-thumbnail img-fluid" style="width: 200px; height:200px;"/>
-                            </div>
+                            <product-gallery></product-gallery>
                             <br/>
+                            
                             <input class="btn btn-success" type="button" id="btnAddToCart" ng-show="product.canPurchase" value="Add to cart"/>
                         </div>
 
