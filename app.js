@@ -7,7 +7,7 @@
     app.controller('StoreController', ['$http', function($http){
         // power of JS! declare properties on the fly
         var store = this;
-        store.products = [];
+        store.products = []; // test commands
 
         $http.get('/json/products.json').success(function(data){
             store.products = data;

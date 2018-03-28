@@ -37,7 +37,10 @@
     });
 
     app.directive('productSpecs', function(){
-        return { restrict: 'A', templateUrl: 'product-specs.html'};
+        return { 
+            restrict: 'A', 
+            templateUrl: 'product-specs.html'
+        };
     });
 
     app.directive('productGallery', function(){
