@@ -76,8 +76,8 @@ class GDPR{
         
         this.checkParams();
 
-        this.modalContentUrl = "https://jsgdps.azurewebsites.net/terms.html";
-        this.alertContentUrl = "https://jsgdps.azurewebsites.net/alertText.html";
+        this.modalContentUrl = "https://angular-johny.azurewebsites.net//terms.html";
+        this.alertContentUrl = "https://angular-johny.azurewebsites.net/alertText.html";
     }
 
     Init(){
@@ -141,7 +141,7 @@ class GDPR{
 
     injectScripts(){
         this.ScriptsToInject.forEach(script => {
-            $.getScript("https://jsgdps.azurewebsites.net/" + script);
+            $.getScript("https://angular-johny.azurewebsites.net/" + script);
         });
     }
 
