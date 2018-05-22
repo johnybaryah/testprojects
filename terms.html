@@ -43,19 +43,9 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" id="savecookie" class="btn btn-default" disabled>Aceept or Die!</button>
+        <button type="button" id="savecookie" class="btn btn-default">Accept!</button>
       </div>
     </div>
 
   </div>
 </div>
-
-<script>
-    $(function(){
-        $('.modal-body').scroll(function() {                       
-            if ($(this).scrollTop() == 0) {         
-                $('#savecookie').removeAttr('disabled');
-            }
-        });
-    })
-</script>
